@@ -1,0 +1,23 @@
+name: workflows practica java
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  construir-y-compilar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obtener codigo /comprobar
+        uses: actions/checkout@v4
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Ejecutar pruebas
+        run: mvn test
